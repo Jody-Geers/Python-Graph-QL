@@ -1,4 +1,6 @@
 # Python-Graph-QL
 Python Web Data Service, GraphQL Style API.
 
-. . . writing this one blind - personal Python learning.
+End to End; Server > Controller > Service > Provider.
+
+. . . personal Python learning via a fun project. :)
