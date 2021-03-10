@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- meta -->
+    <title>Python Graph QL</title>
+    <meta name="description" content="Python Graph QL" />
+    <meta name="author" content="Jody Jacobus Geers" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- lib -->
+    <script src="./lib/jquery-2.2.4.min.js"></script>
+
+    <!-- bin -->
+    <script src="./bin/build.js"></script>
+
+</head>
+
+<body>
+
+    <!-- UI -->
+    <div class="input"></div>
+
+    <hr/>
+    
+    <div class="output"></div>
+
+</body>
+
+<!-- App -->
+<script>
+
+
+// filter Person entity
+let req = { 
+    type : 'Person',
+    ctx : {
+        person_name : 'duke'
+    },
+    order : 'DESC',
+    offset : 0,
+    limit : 1
+};
+
+
+// update UI
+$( '.input' ).html( 'REQ : ' + JSON.stringify( req ) );
+
+
+// request
+_persistServer( req, ( err, data ) => {
+
+    // bad
+    if ( err ) {
+
+        $( '.output' ).html( 'RES : ' + err.statusText + ' - ' + ( ( err.responseText )? err.responseText : '' ) );
+
+        return;
+
+    }
+
+    // good
+    $( '.output' ).html( 'RES : ' + data );
+
+});
+
+
+</script>
+
+</html>
