@@ -1,0 +1,3 @@
+Abstract database engine for API > SQL.
+
+Entity / type Service raw data binding to entity Model.

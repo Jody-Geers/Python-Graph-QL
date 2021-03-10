@@ -1,0 +1,3 @@
+Abstract Controller for general behaviour expectations otherwise @Overide Controller for 'edge' case processing.
+
+Request validation, data processing to Data Service > Data Provider for persistence of entity / Model types.

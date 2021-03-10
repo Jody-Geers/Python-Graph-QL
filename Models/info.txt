@@ -1,0 +1,3 @@
+Entity definitions ( as per provider tables )
+
+All interaction with entitys are sterilized through these.

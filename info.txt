@@ -1,0 +1,9 @@
+Server API entry point.
+
+Clustering mutlti threaded Request Routing.
+
+Parse entity / Model by type, hand to relavent Controller for processing.
+
+Return outcome / JSON.
+
+( Server > Controller > Data Service > Provider )
