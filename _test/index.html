@@ -49,20 +49,14 @@ $( '.input' ).html( 'REQ : ' + JSON.stringify( req ) );
 
 
 // request
-_persistServer( req, ( err, data ) => {
+persistServer( req ).then( data => {
 
-    // bad
-    if ( err ) {
-
-        $( '.output' ).html( 'RES : ' + err.statusText + ' - ' + ( ( err.responseText )? err.responseText : '' ) );
-
-        return;
-
-    }
-
-    // good
     $( '.output' ).html( 'RES : ' + data );
 
+}).catch( err => {
+
+    $( '.output' ).html( 'RES : ' + err.statusText + ' - ' + ( ( err.responseText )? err.responseText : '' ) );
+    
 });
 
 

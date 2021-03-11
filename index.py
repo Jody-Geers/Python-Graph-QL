@@ -1,6 +1,6 @@
 # application module dependies
 from Config.Config import *
-from Controllers.Controllers import *
+from Utils.Utils import *
 # application external dependies
 import socket
 import urllib

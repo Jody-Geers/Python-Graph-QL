@@ -3,28 +3,32 @@
  * @param {obj} req - requested entity database interaction
  * @return {arr} data - result
  */
-_persistServer = ( req, cb ) => {
+persistServer = req => {
 
-    $.ajax({
-        cache : false,
-        crossDomain : true,
-        timeout : 15000, // 0 = never say never
-        xhrFields : {
-            withCredentials : false
-        },
-        contentType: 'text/plain; charset=utf-8',
-        method : 'POST',
-        url : 'http://localhost:8080/api/' + req.type + '/',
-        data: JSON.stringify( req )
-    })
-    .done( res => {
+    return new Promise( ( resolve, reject ) => {
 
-        cb( null, res );
+        $.ajax({
+            cache : false,
+            crossDomain : true,
+            timeout : 15000, // 0 = never say never
+            xhrFields : {
+                withCredentials : false
+            },
+            contentType: 'text/plain; charset=utf-8',
+            method : 'POST',
+            url : 'http://localhost:8080/api/' + req.type + '/',
+            data: JSON.stringify( req )
+        })
+        .done( res => {
 
-    })
-    .fail( err => {
+            resolve( res );
 
-        cb( err );
+        })
+        .fail( err => {
+
+            reject( err );
+
+        });
 
     });
 
