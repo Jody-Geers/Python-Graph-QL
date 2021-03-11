@@ -1,6 +1,7 @@
 # application module dependies
 from Config.Config import *
 from Utils.Utils import *
+from Models.Models import *
 # application external dependies
 import socket
 import urllib
@@ -39,8 +40,19 @@ while True:
     # Ctx
     requestBody = request.rfile.read( int( request.headers['Content-Length'] ) )
 
-    print( 'body : ' + json.dumps( json.loads( urllib.parse.unquote( requestBody ) ) ) )
-    
+    requestCtx = json.loads( urllib.parse.unquote( requestBody ) )
+
+    print( 'body : ' + json.dumps( requestCtx ) )
+
+    person = json.loads( json.dumps( requestCtx['ctx'] ), object_hook=lambda d: Person( **d ) )
+
+    print( person.person_name )
+    '''
+    TODO NEXT : 
+    Make above entity parsing / data sterilization type dynamic, 
+    note : d : Person( ** d )
+    '''
+
 
     # Request Routing - Python 'Switch' Statement
     if request.command == 'POST':

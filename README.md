@@ -2,7 +2,11 @@
 
 Python Web Data Service, GraphQL Style API.
 
-End to End; Server > Controller > Service > Provider.
+End to End; 
+
+TODO : Server > Controller > Service > Provider.
+
+TODO : Data Analysis > Correlations > Data Assumptions.
 
 . . . personal Python learning via a fun project. :)
 

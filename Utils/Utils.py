@@ -1,2 +1,2 @@
-# application module dependies
+# application shared utilities
 from Utils.HTTPRequest import *
