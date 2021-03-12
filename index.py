@@ -37,21 +37,24 @@ while True:
     request.headers['Access-Control-Allow-Credentials'] = 'true'
 
 
-    # Ctx
+    # Sanitize data & build context
     requestBody = request.rfile.read( int( request.headers['Content-Length'] ) )
 
-    requestCtx = json.loads( urllib.parse.unquote( requestBody ) )
+    requestBody = json.loads( urllib.parse.unquote( requestBody ) )
 
-    print( 'body : ' + json.dumps( requestCtx ) )
+    print( 'body : ' + json.dumps( requestBody ) )
 
-    person = json.loads( json.dumps( requestCtx['ctx'] ), object_hook=lambda d: Person( **d ) )
+    ctx = json.loads( json.dumps( requestBody['ctx'] ), object_hook=lambda d: globals()[requestBody['type']]( **d ) )
 
-    print( person.person_name )
-    '''
-    TODO NEXT : 
-    Make above entity parsing / data sterilization type dynamic, 
-    note : d : Person( ** d )
-    '''
+    requestBody['ctx'] = None
+
+    api = json.loads( json.dumps( requestBody ), object_hook=lambda d: Api( **d ) )
+
+    api.ctx = ctx
+
+
+    # Initalize Controller - Process Data
+    print( 'init : ' + api.type + ' Controller, with data interaction ' + api.interaction )
 
 
     # Request Routing - Python 'Switch' Statement

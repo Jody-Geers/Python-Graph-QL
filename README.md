@@ -6,14 +6,18 @@ End to End;
 
 TODO : Server > Controller > Service > Provider.
 
-TODO : Data Analysis > Correlations > Data Assumptions.
+TODO ( spinoff project ) : Data Analysis > Correlations > Data Assumptions.
 
 . . . personal Python learning via a fun project. :)
 
+
+
 # API
 
+```
 let req = { 
     type : 'Person',
+    interaction : 'get', // get || set
     ctx : {
         person_name : 'duke'
     },
@@ -21,3 +25,4 @@ let req = {
     offset : 0,
     limit : 1
 };
+```
