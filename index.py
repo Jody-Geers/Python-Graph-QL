@@ -2,6 +2,7 @@
 from Config.Config import *
 from Utils.Utils import *
 from Models.Models import *
+from Controllers.Controllers import *
 # application external dependies
 import socket
 import urllib
@@ -44,17 +45,21 @@ while True:
 
     print( 'body : ' + json.dumps( requestBody ) )
 
-    ctx = json.loads( json.dumps( requestBody['ctx'] ), object_hook=lambda d: globals()[requestBody['type']]( **d ) )
+    ctx = json.loads( json.dumps( requestBody['ctx'] ), object_hook=lambda d: globals()['Model' + requestBody['type']]( **d ) )
 
     requestBody['ctx'] = None
 
-    api = json.loads( json.dumps( requestBody ), object_hook=lambda d: Api( **d ) )
+    api = json.loads( json.dumps( requestBody ), object_hook=lambda d: ModelApi( **d ) )
 
     api.ctx = ctx
 
 
     # Initalize Controller - Process Data
-    print( 'init : ' + api.type + ' Controller, with data interaction ' + api.interaction )
+    controller = globals()['Controller' + requestBody['type']]
+
+    interaction = getattr( controller, 'do' + api.interaction.title() )
+    
+    interaction( api )
 
 
     # Request Routing - Python 'Switch' Statement
